@@ -32,6 +32,14 @@ public class Teamsheet_PlayerEndpoint {
 		return service.getAllTeamsheet_Player();
 	}
 
+	@Path("/getAllTeamsheet_PlayersWithTeamsheetId/{teamsheetId}")
+	@GET
+	@Produces({ "application/json" })
+	public String getAllTeamsheet_PlayersWithTeamsheetId(@PathParam("teamsheetId") String teamsheetId) {
+		return service.getAllTeamsheet_PlayersWithTeamsheetId(teamsheetId);
+	}
+
+	
 	@Path("/createTeamsheet_Player")
 	@POST
 	@Produces({ "application/json" })

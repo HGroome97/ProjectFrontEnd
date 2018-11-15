@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import com.qa.persistence.domain.Teamsheet_Player;
@@ -30,6 +31,14 @@ public class Teamsheet_PlayerDBRepository implements Teamsheet_PlayerRepository 
 		Collection<Teamsheet_Player> Teamsheet_Players = (Collection<Teamsheet_Player>) query.getResultList();
 		return jsonOb.getJSONForObject(Teamsheet_Players);
 	}
+	
+	public String getAllTeamsheet_PlayersWithTeamsheetId(String teamsheetId) {
+		TypedQuery<Teamsheet_Player> query = manager.createQuery("Select ts FROM Teamsheet_Player AS ts where ts.teamsheetId = '"+teamsheetId+"'", Teamsheet_Player.class);
+		Collection<Teamsheet_Player> Teamsheet_Players = (Collection<Teamsheet_Player>) query.getResultList();
+		//return "got "+teamsheetId;
+		return jsonOb.getJSONForObject(Teamsheet_Players);
+	}	
+	
 	
 	@Transactional(REQUIRED)
 	public String createTeamsheet_Player(String Teamsheet_Player) {
