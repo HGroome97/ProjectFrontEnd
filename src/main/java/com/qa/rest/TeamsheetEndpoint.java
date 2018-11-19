@@ -60,6 +60,13 @@ public class TeamsheetEndpoint {
 		Teamsheet tsObj= jsonOb.getObjectForJSON(ts, Teamsheet.class);
 		return service.updateTeamsheet(tsObj);
 	}
+	
+	@Path("/searchTeamsheet/{name}")
+	@GET
+	@Produces({ "application/json" })
+	public String searchByName(@PathParam("name") String name) {
+		return service.searchByName(name);
+	}
 
 	public void setService(TeamsheetService service) {
 		this.service = service;

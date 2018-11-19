@@ -9,4 +9,5 @@ public interface TeamsheetRepository {
 	String getTeamsheet(long id);
 	String deleteTeamsheet(long id);
 	String updateTeamsheet(Teamsheet ts);
+	String searchByName(String name);
 }

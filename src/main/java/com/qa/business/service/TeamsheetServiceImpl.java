@@ -1,7 +1,10 @@
 package com.qa.business.service;
 
+import java.util.Collection;
+
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
+import javax.persistence.TypedQuery;
 
 import com.qa.persistence.domain.Teamsheet;
 import com.qa.persistence.repository.TeamsheetRepository;
@@ -34,6 +37,10 @@ public class TeamsheetServiceImpl implements TeamsheetService {
 	@Override
 	public String updateTeamsheet(Teamsheet ts) {
 		return repo.updateTeamsheet(ts);
+	}
+	
+	public String searchByName(String name) {
+		return repo.searchByName(name);
 	}
 
 	

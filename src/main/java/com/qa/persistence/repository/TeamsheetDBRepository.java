@@ -10,9 +10,11 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import com.qa.persistence.domain.Teamsheet;
+import com.qa.persistence.domain.Teamsheet_Player;
 import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
@@ -62,6 +64,12 @@ public class TeamsheetDBRepository implements TeamsheetRepository {
 		
 		teamsheetInDB.setPlayers(ts.getPlayers());
 		return "{\"message\": \"Teamsheet has been sucessfully updated\"}";
+	}
+	
+	public String searchByName(String name) {
+		TypedQuery<Teamsheet> query = manager.createQuery("Select ts FROM Teamsheet AS ts where ts.saveName = '"+name+"'", Teamsheet.class);
+		Collection<Teamsheet> Teamsheet = (Collection<Teamsheet>) query.getResultList();
+		return jsonOb.getJSONForObject(Teamsheet);
 	}
 	
 	

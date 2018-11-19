@@ -35,7 +35,6 @@ public class Teamsheet_PlayerDBRepository implements Teamsheet_PlayerRepository 
 	public String getAllTeamsheet_PlayersWithTeamsheetId(String teamsheetId) {
 		TypedQuery<Teamsheet_Player> query = manager.createQuery("Select ts FROM Teamsheet_Player AS ts where ts.teamsheetId = '"+teamsheetId+"'", Teamsheet_Player.class);
 		Collection<Teamsheet_Player> Teamsheet_Players = (Collection<Teamsheet_Player>) query.getResultList();
-		//return "got "+teamsheetId;
 		return jsonOb.getJSONForObject(Teamsheet_Players);
 	}	
 	
@@ -63,10 +62,12 @@ public class Teamsheet_PlayerDBRepository implements Teamsheet_PlayerRepository 
 	
 	@Transactional(REQUIRED)
 	public String updateTeamsheet_Player(Teamsheet_Player ts) {
-		//Teamsheet_Player Teamsheet_PlayerInDB = findTeamsheet_Player(ts.getTeamsheet_PlayerId());
-		//Teamsheet_PlayerInDB.setSaveName(ts.getSaveName());
-		//Teamsheet_PlayerInDB.setPlayers(ts.getPlayers());
-		return "{\"message\": \"Teamsheet_Player has been sucessfully updated\"}";
+		Teamsheet_Player Teamsheet_PlayerInDB = findTeamsheet_Player(ts.getTeamsheetPlayerId());
+		Teamsheet_PlayerInDB.setPlayerId(ts.getPlayerId());
+		Teamsheet_PlayerInDB.setTeamsheetId(ts.getTeamsheetId());
+		Teamsheet_PlayerInDB.setPosNo(ts.getPosNo());
+		return ts.toString() + Teamsheet_PlayerInDB.toString();
+				//"{\"message\": \"Teamsheet_Player has been sucessfully updated\"}";
 	}
 	
 	

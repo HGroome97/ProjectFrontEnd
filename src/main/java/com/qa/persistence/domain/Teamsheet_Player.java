@@ -13,6 +13,7 @@ public class Teamsheet_Player {
 	private long teamsheetPlayerId;
 	private long teamsheetId;
 	private long playerId;
+	private long posNo;
 	
 	public long getTeamsheetPlayerId() {
 		return teamsheetPlayerId;
@@ -20,5 +21,28 @@ public class Teamsheet_Player {
 	public void setTeamsheetPlayerId(long teamsheetPlayerId) {
 		this.teamsheetPlayerId = teamsheetPlayerId;
 	
+	}
+	public long getTeamsheetId() {
+		return teamsheetId;
+	}
+	public void setTeamsheetId(long teamsheetId) {
+		this.teamsheetId = teamsheetId;
+	}
+	public long getPlayerId() {
+		return playerId;
+	}
+	public void setPlayerId(long playerId) {
+		this.playerId = playerId;
+	}
+	public long getPosNo() {
+		return posNo;
+	}
+	public void setPosNo(long posNo) {
+		this.posNo = posNo;
+	}
+	@Override
+	public String toString() {
+		return "Teamsheet_Player [teamsheetPlayerId=" + teamsheetPlayerId + ", teamsheetId=" + teamsheetId
+				+ ", playerId=" + playerId + ", posNo=" + posNo + "]";
 	}
 }
